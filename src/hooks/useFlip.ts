@@ -60,6 +60,7 @@ export function useFlip(keys: readonly string[]) {
       }
     }
     previous.current = next;
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies -- signature (the key order) is the trigger; the DOM is read through refs.
   }, [signature]);
 
   // Window resizes move items without changing keys; keep the baseline current so

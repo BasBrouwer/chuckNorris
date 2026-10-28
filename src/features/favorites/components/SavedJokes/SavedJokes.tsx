@@ -35,6 +35,7 @@ export function SavedJokes({ emptyAction }: SavedJokesProps) {
     const buttons = listRef.current?.querySelectorAll("button") ?? [];
     const target = buttons[Math.min(index, buttons.length - 1)] ?? emptyTitleRef.current;
     target?.focus();
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies -- runs after the list re-rendered; the focus target is read from the DOM.
   }, [favorites]);
 
   return (

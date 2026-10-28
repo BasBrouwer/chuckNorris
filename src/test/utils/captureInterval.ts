@@ -27,15 +27,15 @@ export function captureInterval(delay: number) {
     return realSetInterval(callback, ms);
   }) as unknown as typeof setInterval);
 
-  const clearIntervalSpy = vi.spyOn(globalThis, "clearInterval").mockImplementation(((
-    id?: ReturnType<typeof setInterval>,
-  ) => {
-    if (id === handle) {
-      tick = undefined;
-      return;
-    }
-    realClearInterval(id);
-  }) as typeof clearInterval);
+  const clearIntervalSpy = vi
+    .spyOn(globalThis, "clearInterval")
+    .mockImplementation((id?: ReturnType<typeof setInterval>) => {
+      if (id === handle) {
+        tick = undefined;
+        return;
+      }
+      realClearInterval(id);
+    });
 
   return {
     /** Runs the captured interval callback, as if `delay` ms had passed. */

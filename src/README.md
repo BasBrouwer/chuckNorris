@@ -1,7 +1,7 @@
 # src structure
 
 Dependency direction is one-way: `app` → `features` → shared (`components`, `hooks`, `types`, and `lib`/`config` once needed).
-**Features never import each other.** Pages in `app/pages` compose them. Enforced by `no-restricted-imports` overrides in `oxlint.config.js`, which also catch relative-path bypasses (`../../other-feature`) up to one level of nesting inside a feature.
+**Features never import each other.** Pages in `app/pages` compose them. Enforced by `no-restricted-imports` overrides in `oxlint.config.ts`, which also catch relative-path bypasses (`../../other-feature`) up to one level of nesting inside a feature.
 
 ```
 src/

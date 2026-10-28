@@ -25,6 +25,10 @@ function failEveryRequest() {
   server.use(http.get(RANDOM_JOKE_URL, () => new HttpResponse(null, { status: 500 })));
 }
 
+function serveJoke(id: string) {
+  server.use(http.get(RANDOM_JOKE_URL, () => HttpResponse.json(createRandomJokeResponse({ id }))));
+}
+
 describe("useJokes initial load", () => {
   it("starts out loading with no jokes", () => {
     const { result } = renderHook(() => useJokes({ autoRefresh: false }));
@@ -279,12 +283,6 @@ describe("useJokes auto-refresh", () => {
     beforeEach(() => {
       vi.useFakeTimers({ shouldAdvanceTime: true });
     });
-
-    function serveJoke(id: string) {
-      server.use(
-        http.get(RANDOM_JOKE_URL, () => HttpResponse.json(createRandomJokeResponse({ id }))),
-      );
-    }
 
     it("does not mark any of the initial batch as fresh", async () => {
       const { result } = await renderLoadedJokes();

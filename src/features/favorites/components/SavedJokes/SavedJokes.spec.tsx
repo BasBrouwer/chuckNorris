@@ -11,6 +11,12 @@ function favoriteButtonFor(text: string) {
   return screen.getByRole("button", { name: "Favorite", description: text });
 }
 
+function seedThree() {
+  const jokes = createJokes(3);
+  seedFavorites(jokes);
+  return jokes;
+}
+
 describe("SavedJokes", () => {
   describe("with no favorites", () => {
     it("shows the empty state and the action it was given", () => {
@@ -97,12 +103,6 @@ describe("SavedJokes", () => {
   });
 
   describe("keyboard focus after removing a joke", () => {
-    function seedThree() {
-      const jokes = createJokes(3);
-      seedFavorites(jokes);
-      return jokes;
-    }
-
     it("moves to the card that took the removed card's place", async () => {
       const [, middle, last] = seedThree();
       render(<SavedJokes />);

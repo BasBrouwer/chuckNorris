@@ -19,7 +19,7 @@ describe("captureInterval", () => {
     const interval = captureInterval(5000);
     expect(interval.isRunning()).toBe(false);
 
-    const handle = setInterval(vi.fn(), 5000);
+    const handle = setInterval(() => undefined, 5000);
     expect(interval.isRunning()).toBe(true);
     clearInterval(handle);
 
@@ -39,9 +39,9 @@ describe("captureInterval", () => {
 
   it("throws if a second interval with the same delay is registered, which would hide a doubled timer", () => {
     captureInterval(5000);
-    setInterval(vi.fn(), 5000);
+    setInterval(() => undefined, 5000);
 
-    expect(() => setInterval(vi.fn(), 5000)).toThrow("already registered");
+    expect(() => setInterval(() => undefined, 5000)).toThrow("already registered");
   });
 
   it("throws when asked to fire before anything registered", () => {

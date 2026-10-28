@@ -33,7 +33,7 @@ function mergeJokes(current: readonly TimedJoke[], incoming: readonly TimedJoke[
       byId.set(joke.id, joke);
     }
   }
-  return [...byId.values()].sort((a, b) => b.receivedAt - a.receivedAt).slice(0, MAX_JOKES);
+  return [...byId.values()].toSorted((a, b) => b.receivedAt - a.receivedAt).slice(0, MAX_JOKES);
 }
 
 /**
@@ -92,12 +92,13 @@ export function useJokes({ autoRefresh }: UseJokesOptions) {
     return () => {
       controller.abort();
     };
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies -- loadId only triggers a reload on retry.
   }, [loadId]);
 
   // Timer: while on, add a single new joke per tick.
   useEffect(() => {
     if (!autoRefresh) {
-      return;
+      return undefined;
     }
     const controller = new AbortController();
 

@@ -11,6 +11,7 @@ interface SwitchProps {
 
 export function Switch({ checked, onCheckedChange, id, describedBy }: SwitchProps) {
   return (
+    // oxlint-disable-next-line jsx-a11y/control-has-associated-label -- named by the caller's <label htmlFor={id}>.
     <button
       type="button"
       role="switch"

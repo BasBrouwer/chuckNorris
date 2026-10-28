@@ -24,7 +24,7 @@ beforeEach(() => {
       return positions[this.dataset["key"] ?? ""]?.y ?? 0;
     },
   });
-  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
+  HTMLElement.prototype.animate = animate;
 });
 
 afterEach(() => {
@@ -67,7 +67,7 @@ describe("useFlip", () => {
     positions = { c: { x: 0, y: 0 }, a: { x: 100, y: 0 }, b: { x: 0, y: 200 } };
     rerender(<List keys={["c", "a", "b"]} />);
 
-    expect(animatedKeys().sort()).toEqual(["a", "b"]);
+    expect(animatedKeys().toSorted()).toEqual(["a", "b"]);
     const [aKeyframes, aOptions] = animate.mock.calls[animatedKeys().indexOf("a")] as [
       Keyframe[],
       KeyframeAnimationOptions,

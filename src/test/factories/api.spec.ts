@@ -18,7 +18,7 @@ describe("createRandomJokeResponse", () => {
   it("has exactly the fields and value types of a live API response", () => {
     const response = createRandomJokeResponse();
 
-    expect(Object.keys(response).sort()).toEqual(Object.keys(LIVE_SAMPLE).sort());
+    expect(Object.keys(response).toSorted()).toEqual(Object.keys(LIVE_SAMPLE).toSorted());
     expect(typeof response.value).toBe(typeof LIVE_SAMPLE.value);
     expect(Array.isArray(response.categories)).toBe(true);
     expect(response.icon_url).toBe(LIVE_SAMPLE.icon_url);
