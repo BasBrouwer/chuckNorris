@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.husky
+.idea
+.tanstack
+*.log
+Dockerfile
+.dockerignore
