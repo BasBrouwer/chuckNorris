@@ -10,10 +10,6 @@ concurrency:
   group: validate-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
-defaults:
-  run:
-    working-directory: frontvalue
-
 jobs:
   # One job per check so the PR shows each as its own status and all failures surface at once.
   validate:
@@ -35,7 +31,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: frontvalue/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - run: npm ci
 

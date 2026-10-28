@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "prepare": "cd .. && husky frontvalue/.husky",
+    "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
     "doctor": "npx react-doctor@latest"
