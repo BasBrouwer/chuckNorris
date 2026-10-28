@@ -1,31 +1,56 @@
 # Chuckles
 
-Chuck Norris jokes, with favorites saved in the browser. React 19 (with the React Compiler), Vite, TanStack Router, Vitest.
+Chuck Norris jokes from [api.chucknorris.io](https://api.chucknorris.io). The home page shows the latest 10 jokes and can auto-refresh one every 5 seconds. You can favorite up to 10 jokes; they are saved in `localStorage` and stay in sync across tabs.
 
-Source layout, architecture rules and testing conventions: [`src/README.md`](src/README.md).
+React 19 with the React Compiler, Vite, TanStack Router, Vitest.
+
+## Getting started
+
+Requires Node 24 (the version used by CI and the Docker build).
+
+```sh
+npm install   # runs `prepare`, which installs the pre-commit hook
+npm run dev   # http://localhost:5173
+```
+
+Installed with `--ignore-scripts` or `HUSKY=0`? Run `npm run prepare` to install the hook.
 
 ## Scripts
 
-| Command           | What it does                                                |
-| ----------------- | ----------------------------------------------------------- |
-| `npm run dev`     | Dev server with HMR                                         |
-| `npm run build`   | Type check (`tsc -b`) and production build into `dist/`     |
-| `npm run preview` | Serve the production build locally                          |
-| `npm test`        | Run all tests once (`npm run test:watch` re-runs on change) |
-| `npm run lint`    | Oxlint with type-aware rules and type checking, no warnings |
-| `npm run fmt`     | Format with oxfmt (`npm run fmt:check` only checks)         |
-| `npm run doctor`  | React Doctor scan                                           |
+| Command              | What it does                                            |
+| -------------------- | ------------------------------------------------------- |
+| `npm run dev`        | Dev server with HMR                                     |
+| `npm run build`      | Type check (`tsc -b`) and production build into `dist/` |
+| `npm run preview`    | Serve the production build locally                      |
+| `npm test`           | Run all tests once                                      |
+| `npm run test:watch` | Re-run tests on change                                  |
+| `npm run lint`       | Oxlint with type-aware rules, fails on warnings         |
+| `npm run fmt`        | Format with oxfmt (`npm run fmt:check` only checks)     |
+| `npm run doctor`     | React Doctor scan                                       |
 
-`npm install` sets up a pre-commit hook (husky, `.husky/pre-commit`) that runs `lint` and `fmt:check`.
+The pre-commit hook (`.husky/pre-commit`) runs `lint` and `fmt:check`.
 
-## CI and deployment
+## Project structure
 
-- `.github/workflows/validate.yml` runs on every PR: `npm run fmt:check`, `npm run lint` and `npm test`, each as its own check.
-- `.github/workflows/build-image.yml` builds the Docker image. PRs only build it. Pushes to `main` publish `ghcr.io/<owner>/<repo>:latest` and `:sha-<short>`; `v*` tags publish `:<version>`, `:<major>.<minor>` and `:sha-<short>`, never `latest`.
+Code is split into `app` (routing, pages), `features` (`jokes`, `favorites`) and shared `components`/`hooks`/`types`. Features never import each other, and lint enforces this. Folder layout, import rules and testing conventions are described in [`src/README.md`](src/README.md).
 
-The image is the static build served by nginx on port 80 (SPA fallback to `index.html`, immutable caching for `/assets/`):
+`src/app/route-tree.gen.ts` is generated from `src/app/routes/` on `dev` and `build`. Do not edit it.
+
+## CI
+
+| Workflow           | Trigger                | What it does                                          |
+| ------------------ | ---------------------- | ----------------------------------------------------- |
+| `validate.yml`     | Pull requests          | `fmt:check`, `lint` and `test`, each as its own check |
+| `build-image.yml`  | PRs, `main`, `v*` tags | Builds the Docker image; pushes to GHCR except on PRs |
+| `react-doctor.yml` | PRs, `main`            | Advisory React Doctor report, never fails the build   |
+
+Image tags on `ghcr.io/<owner>/<repo>`: `main` publishes `latest` and `sha-<short>`. A `v1.2.3` tag publishes `1.2.3`, `1.2` and `sha-<short>`, never `latest`.
+
+## Docker
+
+The image serves the static build with nginx on port 80. It falls back to `index.html` for client-side routes, and files under `/assets/` are cached as immutable.
 
 ```sh
-docker build -t frontvalue .
-docker run --rm -p 8080:80 frontvalue
+docker build -t chuckles .
+docker run --rm -p 8080:80 chuckles   # http://localhost:8080
 ```
