@@ -1,6 +1,6 @@
 import { createRouter, type RouterHistory } from "@tanstack/react-router";
 
-import { routeTree } from "./route-tree.gen";
+import { routeTree } from "./routeTree.gen";
 
 /** Builds the app router. Tests pass an in-memory `history` to get an isolated instance. */
 export function createAppRouter(history?: RouterHistory) {

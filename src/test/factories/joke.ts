@@ -1,6 +1,6 @@
 import type { Joke } from "@/types/joke";
 
-import { createFactory, createMany, createSequence } from "./create-factory";
+import { createFactory, createMany, createSequence } from "./createFactory";
 
 const nextJokeId = createSequence("joke");
 

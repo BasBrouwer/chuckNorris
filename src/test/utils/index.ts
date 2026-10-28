@@ -1,3 +1,3 @@
-export { captureInterval } from "./capture-interval";
-export { renderWithRouter } from "./render-with-router";
-export { readStoredFavorites, seedFavorites } from "./seed-favorites";
+export { captureInterval } from "./captureInterval";
+export { renderWithRouter } from "./renderWithRouter";
+export { readStoredFavorites, seedFavorites } from "./seedFavorites";

@@ -1,2 +1,2 @@
-export { SavedJokes } from "./components/saved-jokes";
-export { useFavorites } from "./hooks/use-favorites";
+export { SavedJokes } from "./components/SavedJokes";
+export { useFavorites } from "./hooks/useFavorites";

@@ -1,1 +1,1 @@
-export { LatestJokes } from "./components/latest-jokes";
+export { LatestJokes } from "./components/LatestJokes";

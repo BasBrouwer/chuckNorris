@@ -32,9 +32,9 @@ The pre-commit hook (`.husky/pre-commit`) runs `lint` and `fmt:check`.
 
 ## Project structure
 
-Code is split into `app` (routing, pages), `features` (`jokes`, `favorites`) and shared `components`/`hooks`/`types`. Features never import each other, and lint enforces this. Folder layout, import rules and testing conventions are described in [`src/README.md`](src/README.md).
+Code is split into `app` (routing, pages), `features` (`jokes`, `favorites`) and shared `components`/`hooks`/`types`. Features never import each other, and lint enforces this. Folder layout, naming, import rules and testing conventions are described in [`src/README.md`](src/README.md).
 
-`src/app/route-tree.gen.ts` is generated from `src/app/routes/` on `dev` and `build`. Do not edit it.
+`src/app/routeTree.gen.ts` is generated from `src/app/routes/` on `dev` and `build`. Do not edit it.
 
 ## CI
 

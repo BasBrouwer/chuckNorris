@@ -1,4 +1,4 @@
-import { createFactory } from "./create-factory";
+import { createFactory } from "./createFactory";
 
 /**
  * Shape of `GET https://api.chucknorris.io/jokes/random`, verified against live

@@ -13,7 +13,7 @@ export default defineConfig({
       // No autoCodeSplitting: all route code is a few kB, while a lazy route chunk costs a
       // network round trip on the first navigation to it, with the old page frozen meanwhile.
       routesDirectory: "./src/app/routes",
-      generatedRouteTree: "./src/app/route-tree.gen.ts",
+      generatedRouteTree: "./src/app/routeTree.gen.ts",
     }),
     react(),
     babel({ presets: [reactCompilerPreset()] }),
