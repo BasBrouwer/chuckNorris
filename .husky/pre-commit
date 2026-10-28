@@ -1,0 +1,4 @@
+# Hooks run from the git root; the app lives in frontvalue/.
+cd frontvalue
+npm run lint
+npm run fmt:check
