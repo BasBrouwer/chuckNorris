@@ -1,0 +1,38 @@
+.hero__inner {
+  display: flex;
+  align-items: center;
+  width: min(100% - 2 * var(--gutter), var(--container-narrow));
+  margin-inline: auto;
+  padding: 7.375rem 0 4.1875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero__content {
+  max-width: 40rem;
+}
+
+.hero__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-accent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  font-weight: 400; /* Archivo Black ships a single weight */
+  line-height: 1.075;
+  letter-spacing: -0.015em;
+  max-width: 9em;
+}
+
+.hero__description {
+  margin: 1.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 1.09375rem;
+  line-height: 1.5;
+}
