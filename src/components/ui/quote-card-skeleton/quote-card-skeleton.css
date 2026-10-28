@@ -1,0 +1,35 @@
+.quote-card-skeleton {
+  position: relative;
+  min-height: 10.3125rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  list-style: none;
+}
+
+/* A soft highlight band that swipes left to right. */
+.quote-card-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-fg) 5%, transparent),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: quote-card-skeleton-swipe 1.6s ease-in-out infinite;
+}
+
+@keyframes quote-card-skeleton-swipe {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-card-skeleton::after {
+    animation: none;
+  }
+}

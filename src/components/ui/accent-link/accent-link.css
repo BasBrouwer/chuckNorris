@@ -1,0 +1,12 @@
+.accent-link {
+  color: var(--color-accent);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.accent-link:hover {
+  text-decoration: underline;
+}
