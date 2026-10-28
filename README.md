@@ -2,6 +2,8 @@
 
 Chuck Norris jokes from [api.chucknorris.io](https://api.chucknorris.io). The home page shows the latest 10 jokes and can auto-refresh one every 5 seconds. You can favorite up to 10 jokes; they are saved in `localStorage` and stay in sync across tabs.
 
+Live: [basbrouwer.github.io/chuckNorris](https://basbrouwer.github.io/chuckNorris/)
+
 React 19 with the React Compiler, Vite, TanStack Router, Vitest.
 
 ## Getting started
