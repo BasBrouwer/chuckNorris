@@ -30,7 +30,7 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - run: npm ci
 
@@ -42,7 +42,7 @@ jobs:
       # Pages has no rewrites: serve the SPA shell for deep links like /favorites.
       - run: cp dist/index.html dist/404.html
 
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -54,4 +54,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
