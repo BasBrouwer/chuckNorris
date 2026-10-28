@@ -7,6 +7,8 @@ export function createAppRouter(history?: RouterHistory) {
   return createRouter({
     routeTree,
     scrollRestoration: true,
+    // Matches Vite's `base`, so routes resolve when the app is served from a sub-path.
+    basepath: import.meta.env.BASE_URL,
     ...(history ? { history } : {}),
   });
 }

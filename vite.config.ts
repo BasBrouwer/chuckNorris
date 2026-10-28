@@ -5,6 +5,8 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Sub-path to serve from, e.g. `/chuckNorris/` on GitHub Pages. Defaults to the domain root.
+  base: process.env["BASE_PATH"] ?? "/",
   resolve: { tsconfigPaths: true },
   plugins: [
     // Must come before the React plugin.

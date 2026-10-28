@@ -43,8 +43,15 @@ Code is split into `app` (routing, pages), `features` (`jokes`, `favorites`) and
 | `validate.yml`     | Pull requests          | `fmt:check`, `lint` and `test`, each as its own check |
 | `build-image.yml`  | PRs, `main`, `v*` tags | Builds the Docker image; pushes to GHCR except on PRs |
 | `react-doctor.yml` | PRs, `main`            | Advisory React Doctor report, never fails the build   |
+| `deploy-pages.yml` | `main`, manual         | Builds for the Pages sub-path and deploys it          |
 
 Image tags on `ghcr.io/<owner>/<repo>`: `main` publishes `latest` and `sha-<short>`. A `v1.2.3` tag publishes `1.2.3`, `1.2` and `sha-<short>`, never `latest`.
+
+## GitHub Pages
+
+`deploy-pages.yml` publishes to `https://<owner>.github.io/<repo>/`. It sets `BASE_PATH` to the Pages sub-path, which Vite uses as `base` and the router as `basepath`. Pages has no rewrites, so `dist/index.html` is also copied to `404.html` to make deep links like `/favorites` load the app. One-time setup: in **Settings → Pages**, set **Source** to **GitHub Actions**.
+
+To try a sub-path build locally: `BASE_PATH=/chuckNorris/ npm run build && npm run preview`.
 
 ## Docker
 
