@@ -1,0 +1,42 @@
+name: Validate
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: frontvalue
+
+jobs:
+  # One job per check so the PR shows each as its own status and all failures surface at once.
+  validate:
+    name: ${{ matrix.check.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        check:
+          - { name: Format, script: fmt:check }
+          - { name: Lint, script: lint }
+          - { name: Test, script: test }
+    env:
+      HUSKY: 0
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontvalue/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run ${{ matrix.check.script }}
