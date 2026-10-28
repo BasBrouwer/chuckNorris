@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Start the Latin font files with the HTML instead of after the first render.
+         Same files as the @font-face rules from @fontsource in src/index.css. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0c0d" />
+    <!-- Critical CSS: paint the page background before the app's stylesheet loads.
+         Keep in sync with --color-bg / --color-fg in src/index.css. -->
+    <style>
+      html {
+        background: #0b0c0d;
+        color: #f8f4ec;
+        color-scheme: dark;
+      }
+    </style>
+    <title>Chuckles</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+@import "@fontsource-variable/dm-sans/wght.css";
+@import "@fontsource/archivo-black/400.css";
+
+:root {
+  --font-sans: "DM Sans Variable", sans-serif;
+  --font-display: "Archivo Black", sans-serif;
+
+  --color-bg: #0b0c0d;
+  --color-fg: #f8f4ec;
+  --color-muted: #8b8b8b;
+  /* Dimmer secondary text; 4.6:1 on --color-bg, above the WCAG AA 4.5:1 minimum. */
+  --color-subtle: #7b7b7b;
+  --color-accent: #e8552b;
+  --color-border: color-mix(in srgb, var(--color-fg) 9%, transparent);
+  --color-border-hover: color-mix(in srgb, var(--color-fg) 26%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-fg) 14%, transparent);
+  --color-surface: color-mix(in srgb, var(--color-fg) 4%, var(--color-bg));
+
+  --container-wide: 100rem;
+  --container-narrow: 63.25rem;
+  --gutter: 1.5rem;
+  --header-gutter: 2.25rem;
+
+  color: var(--color-fg);
+  background:
+    radial-gradient(
+        circle 21rem at 80% 10rem,
+        color-mix(in srgb, var(--color-accent) 8%, transparent),
+        transparent
+      )
+      no-repeat,
+    var(--color-bg);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+}
